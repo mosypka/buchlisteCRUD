@@ -1,0 +1,57 @@
+import { request, gql } from 'graphql-request';
+import './BuchLoeschen.css';
+
+const MUTATION = gql`
+  mutation BuchLoeschen($id: ID!) {
+    buchLoeschen(id: $id) {
+      id
+      titel
+    }
+  }
+`;
+
+function BuchLoeschen({ id, titel }) {
+
+  const handleDelete = async () => {
+
+    const bestaetigung = window.confirm(
+      `Soll "${titel}" wirklich gelöscht werden?`
+    );
+
+    if (!bestaetigung) {
+      return;
+    }
+
+    try {
+
+      const data = await request(
+        'http://localhost:3000/graphql',
+        MUTATION,
+        {
+          id
+        }
+      );
+
+      console.log('Gelöscht:', data);
+
+      // Seite neu laden (später schöner über State)
+      window.location.reload();
+
+    } catch (err) {
+      console.error('Fehler beim Löschen:', err);
+    }
+
+  };
+
+
+  return (
+    <button 
+      className="loeschen-button"
+      onClick={handleDelete}
+    >
+      Löschen
+    </button>
+  );
+}
+
+export default BuchLoeschen;

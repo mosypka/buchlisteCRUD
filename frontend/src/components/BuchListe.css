@@ -1,0 +1,80 @@
+.buch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 32px;
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+
+/* Sortierbereich */
+
+.sortierung {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 20px 32px 0;
+
+  background: var(--bg);
+}
+
+
+.sortierung label {
+
+  font-family: var(--mono);
+
+  color: var(--text);
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+}
+
+
+.sortierung label::before {
+
+  content: '> ';
+
+  color: var(--accent);
+}
+
+
+.sortierung select {
+
+  font-family: var(--mono);
+
+  background: var(--panel);
+
+  color: var(--accent);
+
+  border: 1px solid var(--border);
+
+  border-radius: 4px;
+
+  padding: 8px 12px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.sortierung select:hover {
+
+  border-color: var(--accent);
+}
+
+
+.sortierung select:focus {
+
+  outline: none;
+
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 10px rgba(0,229,255,0.25);
+}
